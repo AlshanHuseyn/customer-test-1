@@ -1,0 +1,47 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.7'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+def springfoxVersion = '3.0.0'
+def springfoxUiVersion = '3.0.0'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+//    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+//    runtimeOnly 'mysql:mysql-connector-java'
+//    runtimeOnly 'org.postgresql:postgresql'
+    implementation 'org.postgresql:postgresql:42.2.10'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.6'
+
+    implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.8'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
